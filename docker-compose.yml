@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+    mitev-store-db:
+        container_name: mitev-store-db
+        image: mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: root
+        volumes:
+            - mitev-store-volume:/var/lib/mysql        
+    mitev-store-server:
+        build: ./mitev-store-server
+        container_name: mitev-store-server
+        ports:
+            - "8080:8080"
+        depends_on:
+            - mitev-store-db
+    mitev-store-client:
+        build: ./mitev-store-client
+        container_name: mitev-store-client
+        ports:
+            - "3000:3000"
+volumes:
+    mitev-store-volume:
