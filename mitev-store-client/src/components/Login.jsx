@@ -15,7 +15,7 @@ import styles from "./FormStyle.jsx";
 import {sendRequest, setCookie} from "../Request.js";
 import {connect} from 'react-redux';
 import {notify} from 'react-notify-toast';
-import {getCurrentUser, getToken, tokenHeaderName} from "../Request";
+import {getCurrentUser, tokenHeaderName} from "../Request";
 
 
 class Login extends React.Component {

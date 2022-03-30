@@ -6,17 +6,17 @@ import Login from './components/Login';
 import Header from './components/Header';
 import Cart from './components/Cart';
 import Help from './components/Help.jsx';
-import GameCatalogue from './components/GameCatalogue';
+import GameCatalogue from './components/ProductCatalogue';
 import Register from './components/Register';
 import Footer from './components/Footer';
 import Contacts from './components/Contacts';
-import GameDetail from './components/GameDetail';
 import UserProfile from './components/UserProfile';
 import AddProduct from './components/AddProduct';
 import AdminPanel from './components/AdminPanel';
-import GameSearch from "./components/GameSearch";
+import GameSearch from "./components/ProductSearch";
 import EditProduct from "./components/EditProduct";
 import EditProfile from "./components/EditProfile";
+import ProductDetail from "./components/ProductDetail";
 
 
 class App extends React.Component {
@@ -33,7 +33,7 @@ class App extends React.Component {
                         <Route path="/cart" component={Cart}/>
                         <Route path="/help" component={Help}/>
                         <Route path="/contacts" component={Contacts}/>
-                        <Route path="/product" component={GameDetail}/>
+                        <Route path="/product" component={ProductDetail}/>
                         <Route path="/editProduct" component={EditProduct}/>
                         <Route path="/catalogue" component={GameCatalogue}/>
                         <Route path="/account" component={UserProfile}/>

@@ -103,7 +103,8 @@ class AdminPanel extends React.Component {
                                     <TableCell align="right">{user.updated}</TableCell>
                                     <TableCell align="right">
                                         <Grid item>
-                                            <Button  onClick={(e) => this.handleEditProfile(user.id)} className={classes.buttonEdit}>
+                                            <Button onClick={(e) => this.handleEditProfile(user.id)}
+                                                    className={classes.buttonEdit}>
                                                 Edit Profile
                                             </Button>
                                         </Grid>

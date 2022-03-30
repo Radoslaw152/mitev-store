@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Container, Grid, TextField, Typography, withStyles} from '@material-ui/core';
 import GTA from "../assets/images/maleIcon.png";
-import sendRequest, {deleteToken, getCurrentUser, sendRequestWithHeader, setCookie, tokenHeaderName} from '../Request';
+import sendRequest, {getCurrentUser, sendRequestWithHeader, setCookie, tokenHeaderName} from '../Request';
 import {notify} from 'react-notify-toast';
 import {confirmAlert} from "react-confirm-alert";
 import FormControl from "@material-ui/core/FormControl";

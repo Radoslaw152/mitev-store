@@ -41,7 +41,7 @@ const styles = theme => ({
     }
 });
 
-class GameCard extends React.Component {
+class ProductCard extends React.Component {
     constructor() {
         super();
         this.state = {product: {}, qty: 0};
@@ -105,4 +105,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles, {withTheme: true})(GameCard));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles, {withTheme: true})(ProductCard));

@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import sendRequest from '../Request.js';
 import Grid from "@material-ui/core/Grid";
-import GameCard from './GameCard.jsx';
-import {MenuItem, MenuList, withStyles} from '@material-ui/core';
+import ProductCard from './ProductCard.jsx';
+import {withStyles} from '@material-ui/core';
 import {connect} from "react-redux";
 
 const styles = theme => ({
@@ -17,7 +17,7 @@ const styles = theme => ({
     }
 });
 
-class GameSearch extends React.Component {
+class ProductSearch extends React.Component {
     constructor(props) {
         super(props);
         this.state = {products: [], pages: 0};
@@ -57,7 +57,7 @@ class GameSearch extends React.Component {
                         <Grid container justify="flex-start" spacing={3}>
                             {this.state.products.map(product =>
                                 <Grid item xs={4}>
-                                    <GameCard key={product.id} product={product}/>
+                                    <ProductCard key={product.id} product={product}/>
                                 </Grid>
                             )}
                         </Grid>
@@ -68,4 +68,4 @@ class GameSearch extends React.Component {
     }
 }
 
-export default connect()(withStyles(styles, {withTheme: true})(GameSearch));
+export default connect()(withStyles(styles, {withTheme: true})(ProductSearch));

@@ -1,14 +1,14 @@
 import React from 'react';
 import {withStyles} from "@material-ui/core/styles";
 import {AppBar, Button, Grid, Toolbar, Typography} from '@material-ui/core';
-import GameCard from "./GameCard.jsx";
+import ProductCard from "./ProductCard.jsx";
 import BANNER from "../assets/images/rsz_nicepng_shop-png_1257129.png";
 import DELIVERY from "../assets/images/free_delivery.png";
 import sendRequest from '../Request.js';
 import {NavLink} from 'react-router-dom';
 
 const styles = theme => ({
-    rowGames: {
+    rowProducts: {
         marginBottom: 50
     }
 });
@@ -79,17 +79,17 @@ class Home extends React.Component {
                         <Grid container spacing={2}>
                             {this.state.products.slice(0, 4).map(product =>
                                 <Grid key={product.id} item xs={3}>
-                                    <GameCard product={product}/>
+                                    <ProductCard product={product}/>
                                 </Grid>
                             )}
                         </Grid>
                     </Grid>
-                    <Grid item xs={8} className={classes.rowGames}>
+                    <Grid item xs={8} className={classes.rowProducts}>
                         <CustomAppBar text="On Sale" link="/catalogue/onSale"/>
                         <Grid container spacing={2}>
                             {this.state.productsOnSale.slice(0, 4).map(product =>
                                 <Grid key={product.id} item xs={3}>
-                                    <GameCard product={product}/>
+                                    <ProductCard product={product}/>
                                 </Grid>
                             )}
                         </Grid>

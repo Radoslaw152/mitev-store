@@ -116,18 +116,20 @@ class AddProduct extends React.Component {
             price: this.state.price
         };
         let data = new FormData();
-        data.append('product',JSON.stringify(product));
-        data.append('file',this.state.image);
+        data.append('product', JSON.stringify(product));
+        data.append('file', this.state.image);
 
         let headers = new Headers({
             'Accept-Type': 'application/json'
         });
 
 
-        sendRequestWithHeader(uri, 'POST', data, headers,(response) => {
+        sendRequestWithHeader(uri, 'POST', data, headers, (response) => {
             notify.show("Successfully added product!", 'success', 7000);
-            let id = response.id;
-            this.props.history.push('/product/' + id);
+            response.json().then((json) => {
+                let id = json.id;
+                this.props.history.push('/product/' + id);
+            });
         });
     }
 
@@ -193,7 +195,9 @@ class AddProduct extends React.Component {
                             text={this.state.errors}
                             type='error'
                             show='true'
-                            onClosePress={()=> {this.setState({errors: ''})}}
+                            onClosePress={() => {
+                                this.setState({errors: ''})
+                            }}
                             pressCloseOnOutsideClick={true}
                             showBorderBottom={true}
                             alertStyles={{}}
@@ -201,7 +205,7 @@ class AddProduct extends React.Component {
                             textStyles={{}}
                             buttonStyles={{}}
                         />
-                    : null}
+                        : null}
                     <form style={{marginBottom: 40}} className={classes.form} onSubmit={this.handleSubmit}>
                         <Grid container spacing={2} alignItems="center" justifyContent="center">
                             <Grid item xs={12}>
@@ -227,7 +231,7 @@ class AddProduct extends React.Component {
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12}>
-                                <FormControl fullWidth variant="filled" className={classes.input} >
+                                <FormControl fullWidth variant="filled" className={classes.input}>
                                     <InputLabel id='brandtype-label' className={classes.text}>Brand</InputLabel>
                                     <Select
                                         value={this.state.brandType}
@@ -249,13 +253,13 @@ class AddProduct extends React.Component {
                                     fullWidth
                                     id="model"
                                     label="Model"
-                                    
+
                                     value={this.state.model}
                                     onChange={this.handleInputChange}
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <FormControl fullWidth variant="filled" className={classes.input} >
+                                <FormControl fullWidth variant="filled" className={classes.input}>
                                     <InputLabel id='graphicscard-label' className={classes.text}>Graphics
                                         Card</InputLabel>
                                     <Select
@@ -271,7 +275,7 @@ class AddProduct extends React.Component {
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12}>
-                                <FormControl fullWidth variant="filled" className={classes.input} >
+                                <FormControl fullWidth variant="filled" className={classes.input}>
                                     <InputLabel id='processorType-label' className={classes.text}>Processor</InputLabel>
                                     <Select
                                         value={this.state.processorType}
@@ -295,7 +299,7 @@ class AddProduct extends React.Component {
                                     id="ram"
                                     label="RAM"
                                     InputProps={{endAdornment: <InputAdornment position="end">GB</InputAdornment>}}
-                                    
+
                                     value={this.state.ram}
                                     onChange={this.handleInputChange}
                                 />
@@ -310,7 +314,7 @@ class AddProduct extends React.Component {
                                     label="Storage"
                                     type="number"
                                     InputProps={{endAdornment: <InputAdornment position="end">GB</InputAdornment>}}
-                                    
+
                                     value={this.state.storageInGB}
                                     onChange={this.handleInputChange}
                                 />
@@ -325,7 +329,7 @@ class AddProduct extends React.Component {
                                     label="Price"
                                     type="number"
                                     InputProps={{endAdornment: <InputAdornment position="end">$</InputAdornment>}}
-                                    
+
                                     value={this.state.price}
                                     onChange={this.handleInputChange}
                                 />

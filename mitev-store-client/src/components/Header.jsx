@@ -7,7 +7,7 @@ import LOGO1 from '../assets/images/white_logo_transparent_background.png';
 import Searchbar from './SearchBar.jsx';
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import sendRequest, {deleteToken, getCurrentRole, getCurrentUser, getToken} from "../Request";
+import sendRequest, {deleteToken, getCurrentUser} from "../Request";
 import {notify} from 'react-notify-toast';
 
 
@@ -170,8 +170,10 @@ class Header extends React.Component {
                                      component={NavLink}/>
                                 <Tab className={classes.tab} label="Ultrabooks" to='/catalogue/Ultrabook'
                                      component={NavLink}/>
-                                <Tab className={classes.tab} label="Gaming Laptops" to='/catalogue/Gaming Laptop' component={NavLink}/>
-                                <Tab className={classes.tab} label="Desktop Computers" to='/catalogue/Desktop Computer' component={NavLink}/>
+                                <Tab className={classes.tab} label="Gaming Laptops" to='/catalogue/Gaming Laptop'
+                                     component={NavLink}/>
+                                <Tab className={classes.tab} label="Desktop Computers" to='/catalogue/Desktop Computer'
+                                     component={NavLink}/>
                                 <Tab className={classes.tab} label="On Sale" to='/catalogue/onSale'
                                      component={NavLink}/>
                             </Tabs>

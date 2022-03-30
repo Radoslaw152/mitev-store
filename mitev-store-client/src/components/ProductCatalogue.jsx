@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import sendRequest from '../Request.js';
 import Grid from "@material-ui/core/Grid";
-import GameCard from './GameCard.jsx';
+import ProductCard from './ProductCard.jsx';
 import {MenuItem, MenuList, withStyles} from '@material-ui/core';
 
 const styles = theme => ({
@@ -16,7 +16,7 @@ const styles = theme => ({
     }
 });
 
-class GameCatalogue extends React.Component {
+class ProductCatalogue extends React.Component {
     constructor() {
         super();
         this.state = {products: [], pages: 0, brandType: [], graphicsCard: [], processorType: [], modelType: []};
@@ -48,9 +48,9 @@ class GameCatalogue extends React.Component {
         let uri = '/api/products';
         if (type === 'onSale') {
             uri += '/onSale';
-        } else if( type === 'new') {
+        } else if (type === 'new') {
             uri += '/new';
-        } else if (type !== 'catalogue'){
+        } else if (type !== 'catalogue') {
             uri += `?modeltype=${type}`
         }
 
@@ -94,15 +94,18 @@ class GameCatalogue extends React.Component {
                     <Grid item xs={2} className={classes.menu}>
                         <MenuList> Brands
                             {this.state.brandType.map((brand) =>
-                                <MenuItem onClick={event => this.handleClick(event, "brandtype", brand)}>{brand}</MenuItem>)}
+                                <MenuItem
+                                    onClick={event => this.handleClick(event, "brandtype", brand)}>{brand}</MenuItem>)}
                         </MenuList>
                         <MenuList> Processors
                             {this.state.processorType.map((processorType) =>
-                                <MenuItem onClick={event => this.handleClick(event, "processortype", processorType)}>{processorType}</MenuItem>)}
+                                <MenuItem
+                                    onClick={event => this.handleClick(event, "processortype", processorType)}>{processorType}</MenuItem>)}
                         </MenuList>
                         <MenuList> Graphic Cards
                             {this.state.graphicsCard.map((graphicsCard) =>
-                                <MenuItem onClick={event => this.handleClick(event, "graphicscard", graphicsCard)}>{graphicsCard}</MenuItem>)}
+                                <MenuItem
+                                    onClick={event => this.handleClick(event, "graphicscard", graphicsCard)}>{graphicsCard}</MenuItem>)}
                         </MenuList>
                     </Grid>
                     <Grid item xs={1}></Grid>
@@ -110,7 +113,7 @@ class GameCatalogue extends React.Component {
                         <Grid style={{marginBottom: 15}} container justify="flex-start" spacing={3}>
                             {this.state.products.map(product =>
                                 <Grid item xs={4}>
-                                    <GameCard key={product.id} product={product}/>
+                                    <ProductCard key={product.id} product={product}/>
                                 </Grid>
                             )}
                         </Grid>
@@ -121,4 +124,4 @@ class GameCatalogue extends React.Component {
     }
 }
 
-export default withStyles(styles, {withTheme: true})(GameCatalogue);
+export default withStyles(styles, {withTheme: true})(ProductCatalogue);

@@ -90,7 +90,7 @@ const styles = theme => ({
     }
 });
 
-class GameDetail extends React.Component {
+class ProductDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {product: {}, comments: [], text: '', qty: 1, user: null, openedCommentId: null};
@@ -109,7 +109,7 @@ class GameDetail extends React.Component {
     }
 
     componentDidMount() {
-        console.log("ComonentDidMount from GameDetail");
+        console.log("ComonentDidMount from ProductDetail");
         var id = document.URL.substring(document.URL.lastIndexOf('/') + 1);
         const uri = '/api/products/' + id;
         sendRequest(uri, 'GET', {}, (response) => {
@@ -313,14 +313,16 @@ class GameDetail extends React.Component {
                                 SSD: {this.state.product.storageInGB} GB
                             </Typography>
                             {this.state.product.onSale ?
-                              <div>
-                                <Typography variant="h6" className={classes.text} style={{textDecoration: "line-through", display: "inline"}}>
-                                Price: ${this.state.product.price}
-                                </Typography>
-                                  <Typography variant="h6" className={classes.text}>
-                                      Price: ${this.state.product.price * ((100 - this.state.product.percentOff) / 100)}
-                                  </Typography>
-                              </div>
+                                <div>
+                                    <Typography variant="h6" className={classes.text}
+                                                style={{textDecoration: "line-through", display: "inline"}}>
+                                        Price: ${this.state.product.price}
+                                    </Typography>
+                                    <Typography variant="h6" className={classes.text}>
+                                        Price:
+                                        ${this.state.product.price * ((100 - this.state.product.percentOff) / 100)}
+                                    </Typography>
+                                </div>
 
                                 :
                                 <Typography variant="h6" className={classes.text}>
@@ -384,64 +386,64 @@ class GameDetail extends React.Component {
                             {this.state.comments && this.state.comments.length > 0 ?
                                 <div>
                                     {this.state.comments.map(comment =>
-                                            <Grid container justify="center">
-                                                <Grid item xs={12} sm={this.getIdentation(comment)}>
-                                                    <Typography
-                                                        variant="h6">{comment.user.firstName} {comment.user.lastName} | {comment.created}</Typography>
-                                                </Grid>
-                                                {this.isCurrentUser(comment) &&
-                                                <Grid item xs={12} sm={this.getIdentation(comment)}>
-                                                    <Button onClick={(e) => this.handleCommentOpen(e, comment)}
-                                                            className={classes.buttonEditComment}>Edit Comment</Button>
-                                                </Grid>
+                                        <Grid container justify="center">
+                                            <Grid item xs={12} sm={this.getIdentation(comment)}>
+                                                <Typography
+                                                    variant="h6">{comment.user.firstName} {comment.user.lastName} | {comment.created}</Typography>
+                                            </Grid>
+                                            {this.isCurrentUser(comment) &&
+                                            <Grid item xs={12} sm={this.getIdentation(comment)}>
+                                                <Button onClick={(e) => this.handleCommentOpen(e, comment)}
+                                                        className={classes.buttonEditComment}>Edit Comment</Button>
+                                            </Grid>
 
-                                                }
-                                                {this.isCurrentUser(comment) &&
-                                                <Grid item xs={12} sm={this.getIdentation(comment)}>
-                                                    <Button onClick={(e) => this.handleCommentDelete(comment)}
-                                                            className={classes.buttonDeleteComment}>Delete Comment</Button>
-                                                </Grid>
-                                                }
-                                                <Divider/>
-                                                <Grid item xs={12}>
-                                                    <Typography>
+                                            }
+                                            {this.isCurrentUser(comment) &&
+                                            <Grid item xs={12} sm={this.getIdentation(comment)}>
+                                                <Button onClick={(e) => this.handleCommentDelete(comment)}
+                                                        className={classes.buttonDeleteComment}>Delete Comment</Button>
+                                            </Grid>
+                                            }
+                                            <Divider/>
+                                            <Grid item xs={12}>
+                                                <Typography>
                                                         <pre style={{fontFamily: 'inherit'}}>
                                                             {comment.text}
                                                         </pre>
-                                                    </Typography>
-                                                </Grid>
-                                                <br/>
-                                                {this.state.openedCommentId !== null && this.state.openedCommentId === comment.id ?
-                                                    <Dialog open={true}
-                                                            onClose={(e) => this.handleCommentClose(e)}>
-                                                        <DialogTitle>Edit a comment</DialogTitle>
-                                                        <DialogContent>
-                                                            <DialogContentText>
-                                                                Edit the following comment: '{comment.text}'. Created
-                                                                by: {comment.user.firstName} {comment.user.lastName}
-                                                            </DialogContentText>
-                                                            <TextField
-                                                                autoFocus
-                                                                margin="dense"
-                                                                id="commentInField"
-                                                                label="Comment"
-                                                                type="comment"
-                                                                variant="standard"
-                                                                value={comment.text}
-                                                                fullWidth
-                                                                multiline={true}
-                                                                onChange={(event) => this.handleCommentChange(event, comment)}
-                                                            />
-                                                        </DialogContent>
-                                                        <DialogActions>
-                                                            <Button
-                                                                onClick={(e) => this.handleCommentClose(e)}>Cancel</Button>
-                                                            <Button
-                                                                onClick={(e) => this.handleCommentEdit(e, comment)}>Update</Button>
-                                                        </DialogActions>
-                                                    </Dialog>
-                                                    : null}
+                                                </Typography>
                                             </Grid>
+                                            <br/>
+                                            {this.state.openedCommentId !== null && this.state.openedCommentId === comment.id ?
+                                                <Dialog open={true}
+                                                        onClose={(e) => this.handleCommentClose(e)}>
+                                                    <DialogTitle>Edit a comment</DialogTitle>
+                                                    <DialogContent>
+                                                        <DialogContentText>
+                                                            Edit the following comment: '{comment.text}'. Created
+                                                            by: {comment.user.firstName} {comment.user.lastName}
+                                                        </DialogContentText>
+                                                        <TextField
+                                                            autoFocus
+                                                            margin="dense"
+                                                            id="commentInField"
+                                                            label="Comment"
+                                                            type="comment"
+                                                            variant="standard"
+                                                            value={comment.text}
+                                                            fullWidth
+                                                            multiline={true}
+                                                            onChange={(event) => this.handleCommentChange(event, comment)}
+                                                        />
+                                                    </DialogContent>
+                                                    <DialogActions>
+                                                        <Button
+                                                            onClick={(e) => this.handleCommentClose(e)}>Cancel</Button>
+                                                        <Button
+                                                            onClick={(e) => this.handleCommentEdit(e, comment)}>Update</Button>
+                                                    </DialogActions>
+                                                </Dialog>
+                                                : null}
+                                        </Grid>
                                     )}
                                 </div>
                                 :
@@ -468,4 +470,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles, {withTheme: true})(GameDetail));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles, {withTheme: true})(ProductDetail));
